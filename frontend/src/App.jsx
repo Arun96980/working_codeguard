@@ -38,7 +38,7 @@ function App() {
     setIsLoading(true);
     setError('');
     // Use the environment variable, with a fallback if not set (for local dev)
-    const backendUrl = process.env.REACT_APP_RENDER_BACKEND_URL || 'http://localhost:5000';
+    const backendUrl = process.env.REACT_APP_RENDER_BACKEND_URL;
     const response = await axios.post(`${backendUrl}/analyze`, { code });
     setResults(response.data);
   } catch (err) {
