@@ -28,23 +28,26 @@ function App() {
     }
   ];
 
-  const analyzeCode = async () => {
-    if (!code.trim()) {
-      setError('Please enter some code to analyze');
-      return;
-    }
+ const analyzeCode = async () => {
+  if (!code.trim()) {
+    setError('Please enter some code to analyze');
+    return;
+  }
 
-    try {
-      setIsLoading(true);
-      setError('');
-      const response = await axios.post('http://localhost:5000/analyze', { code });
-      setResults(response.data);
-    } catch (err) {
-      setError(err.response?.data?.error || 'Analysis failed. Please try again.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  try {
+    setIsLoading(true);
+    setError('');
+    // Use the environment variable, with a fallback if not set (for local dev)
+    const backendUrl = process.env.REACT_APP_RENDER_BACKEND_URL || 'http://localhost:5000';
+    const response = await axios.post(`${backendUrl}/analyze`, { code });
+    setResults(response.data);
+  } catch (err) {
+    setError(err.response?.data?.error || 'Analysis failed. Please try again.');
+  } finally {
+    setIsLoading(false);
+  }
+};
+
 
   const loadExample = (exampleCode) => {
     setCode(exampleCode);
