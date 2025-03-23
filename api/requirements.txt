@@ -4,3 +4,4 @@ joblib
 scikit-learn
 python-dotenv
 flask-cors
+Flask-Limiter
