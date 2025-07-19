@@ -58,7 +58,7 @@ function App() {
   return (
     <div className={`app-container ${darkMode ? 'dark' : 'light'}`}>
       <header className="app-header">
-        <h1><FiCode /> Code </h1>
+        <h1><FiCode /> CodeGuard </h1>
         <button 
           onClick={() => setDarkMode(!darkMode)}
           className="theme-toggle"
